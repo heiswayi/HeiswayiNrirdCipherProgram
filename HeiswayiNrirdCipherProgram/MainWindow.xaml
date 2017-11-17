@@ -1,0 +1,84 @@
+﻿<Window x:Class="HeiswayiNrirdCipherProgram.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HeiswayiNrirdCipherProgram"
+        mc:Ignorable="d"
+        Height="400" Width="800"
+        WindowStartupLocation="CenterScreen"
+        FontFamily="Lucida Console"
+        Icon="icon.ico">
+    <Grid Margin="0,5,0,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <GroupBox Grid.Column="0" Header="Input" Margin="5,0,5,5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Margin="5,5,5,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Grid.Column="0" x:Name="tbInputFile" Padding="3" IsReadOnly="True" Background="Gainsboro" Foreground="#ff333333"
+                             HorizontalAlignment="Stretch"/>
+                    <Button Grid.Column="1" x:Name="btnLoadInputFile" Content="Load HNC File to Decrypt" Padding="3" Margin="10,0,0,0" Click="btnLoadInputFile_Click"
+                            HorizontalAlignment="Right"/>
+                </Grid>
+                <TextBox Grid.Row="1" x:Name="tbInput" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" Margin="5"
+                     Background="Black" Foreground="White"
+                         TextChanged="tbInput_TextChanged"/>
+                <StackPanel Orientation="Horizontal" Grid.Row="2">
+                    <Label Content="Data Size: "/>
+                    <Label x:Name="lblDataSizeInput"/>
+                </StackPanel>
+            </Grid>
+        </GroupBox>
+        <Grid Grid.Column="1">
+            <StackPanel VerticalAlignment="Center">
+                <Label Content="Password:" HorizontalAlignment="Center"/>
+                <TextBox x:Name="tbPassword" Width="100" Margin="0,0,0,20" Padding="3" HorizontalContentAlignment="Center" MaxLength="140"
+                         Background="Black" Foreground="White"/>
+                <Button x:Name="btnEncrypt" Content="Encrypt" Width="100" Padding="3" Click="btnEncrypt_Click"
+                        Foreground="Green"/>
+                <Button x:Name="btnDecrypt" Content="Decrypt" Margin="0,20" Width="100" Padding="3" Click="btnDecrypt_Click"
+                        Foreground="Red"/>
+                <Label x:Name="lblStatus" Content="No action" HorizontalAlignment="Center"/>
+                <Grid>
+                    <ProgressBar x:Name="pbStatus" Minimum="0" Maximum="100" Value="0" Height="20"/>
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding ElementName=pbStatus, Path=Value, StringFormat={}{0:0}%}"/>
+                </Grid>
+                <GroupBox Header="Info" Margin="0,20,0,0" Foreground="#ff666666">
+                    <TextBlock Text="Input can be either plain text to be encrypted, or encrypted string to be decrypted. Password is required for any operation."
+                               TextWrapping="Wrap" Margin="5"/>
+                </GroupBox>
+            </StackPanel>
+        </Grid>
+        <GroupBox Grid.Column="2" Header="Output" Margin="5,0,5,5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Margin="5,5,5,0">
+                    <Button x:Name="btnExportOutputFile" Content="Export to a HNC File" Padding="3" Click="btnExportOutputFile_Click"/>
+                </Grid>
+                <TextBox Grid.Row="1" x:Name="tbOutput" IsReadOnly="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" Margin="5"
+                     Background="Gainsboro" Foreground="Black"
+                         TextChanged="tbOutput_TextChanged"/>
+                <StackPanel Orientation="Horizontal" Grid.Row="2">
+                    <Label Content="Data Size: "/>
+                    <Label x:Name="lblDataSizeOutput"/>
+                </StackPanel>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</Window>
